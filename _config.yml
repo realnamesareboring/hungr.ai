@@ -1,0 +1,81 @@
+# Site settings
+title: "HungrAI.ai"
+description: "AI-powered food discovery that matches your mood"
+tagline: "Food that matches your mood"
+url: "https://hungrai.ai"
+baseurl: ""
+
+# Author/Owner info
+author:
+  name: "HungrAI Team"
+  email: "hello@hungrai.ai"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Sass configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Asset optimization
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+# Collections
+collections:
+  sections:
+    output: false
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# Plugins
+plugins:
+  - jekyll-sass-converter
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-environment-variables
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .env
+  - .env.example
+  - README.md
+  - LICENSE
+
+# Include dotfiles
+include:
+  - .htaccess
+
+# Site configuration
+timezone: America/Los_Angeles
+encoding: utf-8
+
+# Feature flags for development
+development:
+  show_drafts: false
+  show_future_posts: false
+
+#OpenAI API Integration
+openai_api_key: "not-configured"

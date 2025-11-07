@@ -1,0 +1,126 @@
+# Mood Options and Mappings
+moods:
+  happy:
+    emoji: "😊"
+    label: "Happy"
+    description: "Feeling cheerful and upbeat"
+    food_themes: ["fresh", "light", "colorful", "vibrant"]
+    cuisine_suggestions: ["Mediterranean", "Asian fusion", "Fresh salads"]
+    
+  excited:
+    emoji: "🤩"
+    label: "Excited"
+    description: "Full of energy and enthusiasm"
+    food_themes: ["bold", "spicy", "adventurous", "exotic"]
+    cuisine_suggestions: ["Thai", "Mexican", "Indian", "Korean"]
+    
+  relaxed:
+    emoji: "😌"
+    label: "Relaxed"
+    description: "Calm and peaceful"
+    food_themes: ["gentle", "soothing", "mild", "comforting"]
+    cuisine_suggestions: ["Italian", "Japanese", "Light soups"]
+    
+  tired:
+    emoji: "😴"
+    label: "Tired"
+    description: "Low energy, need something easy"
+    food_themes: ["simple", "nourishing", "energy-boosting", "easy"]
+    cuisine_suggestions: ["Comfort food", "Smoothies", "Simple pasta"]
+    
+  stressed:
+    emoji: "😤"
+    label: "Stressed"
+    description: "Feeling overwhelmed or anxious"
+    food_themes: ["calming", "warm", "comforting", "familiar"]
+    cuisine_suggestions: ["Comfort food", "Herbal teas", "Warm soups"]
+    
+  romantic:
+    emoji: "🥰"
+    label: "Romantic"
+    description: "In the mood for something special"
+    food_themes: ["elegant", "sophisticated", "intimate", "special"]
+    cuisine_suggestions: ["French", "Italian", "Fine dining", "Wine pairings"]
+    
+  adventurous:
+    emoji: "🤠"
+    label: "Adventurous"
+    description: "Ready to try something new"
+    food_themes: ["exotic", "unique", "fusion", "experimental"]
+    cuisine_suggestions: ["Ethiopian", "Peruvian", "Fusion", "Street food"]
+    
+  comfort:
+    emoji: "🤗"
+    label: "Need Comfort"
+    description: "Seeking warmth and familiarity"
+    food_themes: ["hearty", "warm", "nostalgic", "filling"]
+    cuisine_suggestions: ["American comfort", "Mac and cheese", "Stews", "Baked goods"]
+    
+  celebratory:
+    emoji: "🎉"
+    label: "Celebratory"
+    description: "Ready to feast and celebrate"
+    food_themes: ["festive", "indulgent", "special", "abundant"]
+    cuisine_suggestions: ["BBQ", "Steakhouse", "Celebration cakes", "Party platters"]
+
+# Mood to Food Mapping Logic
+mood_mappings:
+  energy_level:
+    high: ["excited", "happy", "celebratory", "adventurous"]
+    medium: ["relaxed", "romantic"]
+    low: ["tired", "stressed", "comfort"]
+    
+  complexity_preference:
+    simple: ["tired", "stressed", "comfort"]
+    moderate: ["happy", "relaxed"]
+    complex: ["excited", "adventurous", "romantic", "celebratory"]
+    
+  flavor_intensity:
+    mild: ["relaxed", "tired", "stressed", "comfort"]
+    medium: ["happy", "romantic"]
+    bold: ["excited", "adventurous", "celebratory"]
+    
+  temperature_preference:
+    hot: ["tired", "stressed", "comfort"]
+    warm: ["relaxed", "romantic"]
+    any: ["happy", "excited", "adventurous", "celebratory"]
+
+# Contextual Modifiers
+time_of_day:
+  morning:
+    preferred_moods: ["excited", "happy"]
+    avoid_heavy: true
+    suggest: ["light", "energizing", "fresh"]
+    
+  afternoon:
+    preferred_moods: ["relaxed", "adventurous"]
+    balanced: true
+    suggest: ["moderate", "satisfying"]
+    
+  evening:
+    preferred_moods: ["romantic", "comfort", "celebratory"]
+    allow_indulgent: true
+    suggest: ["hearty", "warm", "special"]
+    
+  late_night:
+    preferred_moods: ["comfort", "tired"]
+    light_options: true
+    suggest: ["easy", "quick", "comforting"]
+
+# Weather Considerations
+weather_moods:
+  cold:
+    enhanced_moods: ["comfort", "stressed", "tired"]
+    food_types: ["warm", "hearty", "soup", "stew"]
+    
+  hot:
+    enhanced_moods: ["happy", "relaxed", "excited"]
+    food_types: ["cold", "fresh", "light", "salad"]
+    
+  rainy:
+    enhanced_moods: ["comfort", "relaxed", "romantic"]
+    food_types: ["cozy", "warm", "indoor", "tea"]
+    
+  sunny:
+    enhanced_moods: ["happy", "excited", "adventurous"]
+    food_types: ["fresh", "outdoor", "grilled", "vibrant"]

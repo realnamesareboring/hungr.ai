@@ -1,0 +1,182 @@
+<!-- Step 1: Mood Modal -->
+<div class="modal-overlay" id="mood-modal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('mood-modal')" aria-label="Close modal">&times;</button>
+        <h3 class="modal-title">{{ site.data.content.modals.mood.title }}</h3>
+        <p class="modal-subtitle">{{ site.data.content.modals.mood.subtitle }}</p>
+        
+        <div class="mood-grid">
+            {% for mood_key in site.data.moods.moods %}
+                {% assign mood = mood_key[1] %}
+                {% assign mood_id = mood_key[0] %}
+            <div class="mood-option" data-mood="{{ mood_id }}" role="button" tabindex="0" aria-label="Select {{ mood.label }} mood">
+                <div class="mood-emoji">{{ mood.emoji }}</div>
+                <div class="mood-label">{{ mood.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-secondary" onclick="closeModal('mood-modal')">
+                {{ site.data.content.modals.mood.buttons.cancel }}
+            </button>
+            <button class="modal-btn modal-btn-primary" onclick="nextStep('preferences-modal')" disabled id="mood-next">
+                {{ site.data.content.modals.mood.buttons.next }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Step 2: Preferences Modal -->
+<div class="modal-overlay" id="preferences-modal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('preferences-modal')" aria-label="Close modal">&times;</button>
+        <h3 class="modal-title">{{ site.data.content.modals.preferences.title }}</h3>
+        <p class="modal-subtitle">{{ site.data.content.modals.preferences.subtitle }}</p>
+        
+        <!-- Location Input -->
+        <div class="preference-group">
+            <label class="preference-label" for="location-input">
+                {{ site.data.content.modals.preferences.fields.location.label }}
+            </label>
+            <input 
+                type="text" 
+                class="preference-input" 
+                placeholder="{{ site.data.content.modals.preferences.fields.location.placeholder }}" 
+                id="location-input"
+                autocomplete="address-level2"
+            >
+            <div class="preference-note">{{ site.data.content.modals.preferences.fields.location.note }}</div>
+        </div>
+        
+        <!-- Vibe Selection -->
+        <div class="preference-group">
+            <label class="preference-label">{{ site.data.content.modals.preferences.fields.vibe.label }}</label>
+            <div class="toggle-group" role="radiogroup" aria-label="Dining preference">
+                {% for option in site.data.content.modals.preferences.fields.vibe.options %}
+                <button 
+                    class="toggle-option{% if forloop.first %} active{% endif %}" 
+                    data-vibe="{{ option.value }}"
+                    role="radio"
+                    aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
+                >
+                    {{ option.label }}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Budget Range -->
+        <div class="preference-group">
+            <label class="preference-label" for="budget-range">
+                {{ site.data.content.modals.preferences.fields.budget.label }}
+            </label>
+            <input 
+                type="range" 
+                min="1" 
+                max="4" 
+                value="2" 
+                class="budget-slider" 
+                id="budget-range"
+                aria-describedby="budget-display"
+            >
+            <div class="budget-labels">
+                {% for level in site.data.content.modals.preferences.fields.budget.levels %}
+                <span>{{ level }}</span>
+                {% endfor %}
+            </div>
+            <div class="budget-value" id="budget-display">
+                {{ site.data.content.modals.preferences.fields.budget.labels[1] }}
+            </div>
+        </div>
+        
+        <!-- Group Size -->
+        <div class="preference-group">
+            <label class="preference-label">{{ site.data.content.modals.preferences.fields.people.label }}</label>
+            <div class="toggle-group" role="radiogroup" aria-label="Group size">
+                {% for option in site.data.content.modals.preferences.fields.people.options %}
+                <button 
+                    class="toggle-option{% if forloop.first %} active{% endif %}" 
+                    data-people="{{ option.value }}"
+                    role="radio"
+                    aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
+                >
+                    {{ option.label }}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Timing -->
+        <div class="preference-group">
+            <label class="preference-label">{{ site.data.content.modals.preferences.fields.timing.label }}</label>
+            <div class="toggle-group" role="radiogroup" aria-label="Timing preference">
+                {% for option in site.data.content.modals.preferences.fields.timing.options %}
+                <button 
+                    class="toggle-option{% if forloop.first %} active{% endif %}" 
+                    data-time="{{ option.value }}"
+                    role="radio"
+                    aria-checked="{% if forloop.first %}true{% else %}false{% endif %}"
+                >
+                    {{ option.label }}
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Dietary Preferences -->
+        <div class="preference-group">
+            <fieldset>
+                <legend class="preference-label">{{ site.data.content.modals.preferences.fields.dietary.label }}</legend>
+                <div class="checkbox-grid">
+                    {% for option in site.data.content.modals.preferences.fields.dietary.options %}
+                    <div class="checkbox-item">
+                        <input 
+                            type="checkbox" 
+                            id="{{ option.id }}" 
+                            value="{{ option.id }}"
+                            name="dietary-preferences"
+                        >
+                        <label for="{{ option.id }}">{{ option.label }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </fieldset>
+        </div>
+        
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-secondary" onclick="previousStep('mood-modal')">
+                {{ site.data.content.modals.preferences.buttons.back }}
+            </button>
+            <button class="modal-btn modal-btn-primary" onclick="generateResults()">
+                {{ site.data.content.modals.preferences.buttons.find }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Step 3: Results Modal -->
+<div class="modal-overlay" id="results-modal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal('results-modal')" aria-label="Close modal">&times;</button>
+        <h3 class="modal-title">{{ site.data.content.modals.results.title }}</h3>
+        <p class="modal-subtitle">{{ site.data.content.modals.results.subtitle }}</p>
+        
+        <div class="results-container" id="results-content" role="region" aria-live="polite" aria-label="Search results">
+            <!-- Loading state initially -->
+            <div class="loading">
+                <div class="loading-spinner" aria-hidden="true"></div>
+                <p class="loading-text">{{ site.data.content.modals.results.loading.text }}</p>
+            </div>
+        </div>
+        
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-secondary" onclick="previousStep('preferences-modal')">
+                {{ site.data.content.modals.results.buttons.back }}
+            </button>
+            <button class="modal-btn modal-btn-primary" onclick="startOver()">
+                {{ site.data.content.modals.results.buttons.start_over }}
+            </button>
+        </div>
+    </div>
+</div>

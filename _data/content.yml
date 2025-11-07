@@ -1,0 +1,175 @@
+# Site Content Configuration
+site:
+  title: "hungrai.ai"
+  description: "Your Mood-Based Food Discovery"
+  tagline: "Food that matches your mood"
+
+# Hero Section
+hero:
+  title: "hungrai.ai"
+  tagline: "Food that matches your mood"
+  subtitle: "AI-powered food discovery that understands how you're feeling and finds the perfect meal for any moment"
+  cta_button: "Discover How It Works"
+
+# Main Sections
+sections:
+  overview:
+    title: "What is hungrai.ai?"
+    subtitle: "We believe food is deeply connected to emotions. hungrai.ai is the first AI platform that matches your current mood with the perfect dining experience, whether you're cooking at home or exploring restaurants."
+    cards:
+      - icon: "🧠"
+        title: "Emotion-First Approach"
+        description: "Unlike traditional food apps that focus on cuisine type or location, we start with how you're feeling and build recommendations around your emotional state."
+      - icon: "🎯"
+        title: "Personalized Intelligence"
+        description: "Our AI learns your preferences, dietary restrictions, and past choices to deliver increasingly accurate recommendations that truly understand you."
+      - icon: "⚡"
+        title: "Instant Decisions"
+        description: "No more endless scrolling through menus. Get targeted suggestions in under 60 seconds based on your mood, location, budget, and time constraints."
+
+  how_it_works:
+    title: "How It Works"
+    subtitle: "Three simple steps to discover your perfect meal, whether you're looking to cook, order in, or dine out."
+    steps:
+      - number: 1
+        title: "Tell Us Your Mood"
+        description: "Answer a few quick questions about how you're feeling - tired, excited, stressed, celebratory, or somewhere in between. Our AI understands the nuances of your emotional state."
+      - number: 2
+        title: "Set Your Preferences"
+        description: "Tell us your location, budget range, dietary restrictions, and whether you want to cook at home, order delivery, or explore local restaurants."
+      - number: 3
+        title: "Get Perfect Matches"
+        description: "Receive curated recommendations that align with your mood, from comfort food recipes for cozy nights to vibrant restaurants for celebratory dinners."
+
+  difference:
+    title: "What Makes Us Different"
+    subtitle: "While other platforms focus on ratings and reviews, we focus on the human experience of food and emotion."
+    items:
+      - icon: "🔬"
+        title: "Science-Backed Matching"
+        description: "Our recommendations are based on research connecting emotions to food preferences, nutritional needs, and cultural comfort associations. We understand that spicy food energizes while warm soups comfort."
+      - icon: "🌍"
+        title: "Context-Aware Intelligence"
+        description: "We consider weather, time of day, social context, recent activities, and even local events to ensure our recommendations fit perfectly into your life at that exact moment."
+      - icon: "🚀"
+        title: "Continuously Learning"
+        description: "Every interaction teaches our AI more about your preferences. Rate a recommendation, and we'll remember what worked for your mood to make future suggestions even better."
+
+  about:
+    title: "About"
+    content:
+      - "hungrai.ai was born from the simple observation that our relationship with food is deeply emotional. Created by a team passionate about the intersection of AI, psychology, and culinary experiences, we're building technology that understands the human side of eating."
+      - "Our mission is to eliminate decision fatigue around food choices while helping people discover new flavors and experiences that genuinely match their emotional needs."
+    projects_title: "Explore More Projects"
+    projects:
+      - icon: "🤖"
+        title: "AI Mood Tracker"
+        description: "Open-source emotion detection library for web applications"
+        url: "https://github.com/yourproject1"
+      - icon: "💼"
+        title: "Portfolio"
+        description: "Full collection of AI and web development projects"
+        url: "https://yourportfolio.com"
+      - icon: "🍽️"
+        title: "Recipe API"
+        description: "Nutritional analysis and recipe recommendation engine"
+        url: "https://github.com/yourproject2"
+      - icon: "✍️"
+        title: "Tech Blog"
+        description: "Insights on AI, food tech, and user experience design"
+        url: "https://yourblog.com"
+
+# Modal Content
+modals:
+  mood:
+    title: "How are you feeling?"
+    subtitle: "Select the mood that best describes how you're feeling right now"
+    buttons:
+      cancel: "Cancel"
+      next: "Next Step"
+
+  preferences:
+    title: "Set Your Preferences"
+    subtitle: "Tell us more about what you're looking for"
+    fields:
+      location:
+        label: "Where are you located?"
+        placeholder: "Enter your city or zip code"
+        note: "We'll find options near you"
+      vibe:
+        label: "What's your vibe?"
+        options:
+          - { value: "cook", label: "Cook at Home" }
+          - { value: "order", label: "Order Delivery" }
+          - { value: "dine", label: "Dine Out" }
+      budget:
+        label: "Budget Range"
+        levels: ["$", "$$", "$$$", "$$$$"]
+        labels: ["Budget ($)", "Moderate ($$)", "Upscale ($$$)", "Fine Dining ($$$$)"]
+      people:
+        label: "How many people?"
+        options:
+          - { value: "1", label: "Just me" }
+          - { value: "2", label: "Two people" }
+          - { value: "4", label: "Small group" }
+          - { value: "6+", label: "Large group" }
+      timing:
+        label: "When do you want to eat?"
+        options:
+          - { value: "now", label: "Right now" }
+          - { value: "soon", label: "Within 2 hours" }
+          - { value: "later", label: "Later today" }
+      dietary:
+        label: "Dietary Preferences (optional)"
+        options:
+          - { id: "vegetarian", label: "Vegetarian" }
+          - { id: "vegan", label: "Vegan" }
+          - { id: "gluten-free", label: "Gluten Free" }
+          - { id: "dairy-free", label: "Dairy Free" }
+          - { id: "low-carb", label: "Low Carb" }
+          - { id: "keto", label: "Keto" }
+    buttons:
+      back: "Back"
+      find: "Find My Perfect Match"
+
+  results:
+    title: "Your Perfect Matches"
+    subtitle: "AI-curated recommendations based on your mood and preferences"
+    loading:
+      text: "Analyzing your mood and preferences..."
+    buttons:
+      back: "Back"
+      start_over: "Start Over"
+    actions:
+      more_options: "Get More Options"
+      save_favorites: "Save Favorites"
+      start_over: "Start Over"
+
+# Error Messages
+errors:
+  api_key_missing:
+    title: "⚠️ API Key Required"
+    message: "To use the AI recommendations, you need to:"
+    steps:
+      - "Get an OpenAI API key from platform.openai.com"
+      - "Configure your environment variables"
+      - "Reload the page and try again"
+    note: "Once configured, you'll get personalized AI recommendations!"
+  
+  api_error:
+    title: "⚠️ API Error"
+    message: "Sorry, there was an issue connecting to the AI service:"
+    
+  parse_error:
+    title: "⚠️ Response Parse Error"
+    message: "AI responded, but in an unexpected format. Raw response:"
+
+# Floating Emojis
+floating_emojis: ["🍕", "🍜", "🥗", "🍔", "🍣", "🌮", "🍝", "🥘", "🍰", "🥙"]
+
+# Meta tags and SEO
+meta:
+  description: "AI-powered food discovery that understands how you're feeling and finds the perfect meal for any moment. Match your mood with recipes, restaurants, and dining experiences."
+  keywords: "AI food recommendations, mood-based dining, food discovery, restaurant finder, recipe suggestions, emotional eating, food psychology"
+  author: "HungrAI Team"
+  og_image: "/assets/images/og-image.png"

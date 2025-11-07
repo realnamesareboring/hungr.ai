@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.data.content.meta.description }}{% endif %}">
+    <meta name="keywords" content="{{ site.data.content.meta.keywords }}">
+    <meta name="author" content="{{ site.data.content.meta.author }}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.data.content.meta.description }}{% endif %}">
+    <meta property="og:image" content="{{ site.url }}{{ site.data.content.meta.og_image }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.data.content.meta.description }}{% endif %}">
+    <meta name="twitter:image" content="{{ site.url }}{{ site.data.content.meta.og_image }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://api.openai.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url }}",
+        "description": "{{ site.data.content.meta.description }}",
+        "applicationCategory": "Food & Dining",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    {% if jekyll.environment == "production" %}
+    <!-- Analytics code would go here -->
+    {% endif %}
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="parallax-container" id="container">
+        {{ content }}
+    </div>
+
+    <!-- Modals -->
+    {% include modals.html %}
+
+    <!-- Configuration Script -->
+    <script>
+    // Site configuration - API key automatically loaded from .env
+    window.hungraiConfig = {
+        apiEndpoint: '{{ site.api_endpoint | default: "/api" }}',
+        environment: '{{ jekyll.environment }}',
+        enableAnalytics: {{ site.enable_analytics | default: false }},
+        debugMode: {{ site.debug_mode | default: false }},
+        apiTimeout: {{ site.api_timeout | default: 30000 }},
+        retryAttempts: {{ site.retry_attempts | default: 3 }},
+        openaiApiKey: '{{ site.openai_api_key | default: "not-configured" }}'
+    };
+
+    // Content data
+    window.hungraiContent = {
+        moods: {{ site.data.moods | jsonify }},
+        content: {{ site.data.content | jsonify }}
+    };
+
+    // Debug info
+    console.log('🔐 API Key Status:', 
+        window.hungraiConfig.openaiApiKey === 'not-configured' ? 
+        'Not configured - check .env file' : 
+        'Loaded (' + window.hungraiConfig.openaiApiKey.substring(0, 8) + '...)');
+    </script>
+
+    <!-- JavaScript Files -->
+    <script src="{{ '/assets/js/animations.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/ui.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/api.js' | relative_url }}"></script>
+    
+    {% if jekyll.environment == "development" %}
+    <!-- Development only scripts -->
+    <script>
+        console.log('HungrAI.ai - Development Mode');
+        console.log('Config:', window.hungraiConfig);
+    </script>
+    {% endif %}
+</body>
+</html>
